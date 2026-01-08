@@ -16,6 +16,11 @@
         "dist/**"
       ]
     },
+    "web#build": {
+      "env": [
+        "API_URL"
+      ]
+    },
     "lint": {
       "dependsOn": [
         "^lint"
