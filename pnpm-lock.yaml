@@ -24,6 +24,70 @@ importers:
         specifier: 5.7.3
         version: 5.7.3
 
+  apps/admin:
+    dependencies:
+      '@next/env':
+        specifier: ^16.1.1
+        version: 16.1.1
+      '@radix-ui/react-label':
+        specifier: ^2.1.8
+        version: 2.1.8(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      '@radix-ui/react-separator':
+        specifier: ^1.1.8
+        version: 1.1.8(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      '@radix-ui/react-slot':
+        specifier: ^1.2.3
+        version: 1.2.4(@types/react@19.2.7)(react@19.2.1)
+      '@workspace/auth':
+        specifier: workspace:*
+        version: link:../../packages/auth
+      '@workspace/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      lucide-react:
+        specifier: ^0.475.0
+        version: 0.475.0(react@19.2.1)
+      next:
+        specifier: 16.0.10
+        version: 16.0.10(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      next-themes:
+        specifier: ^0.4.6
+        version: 0.4.6(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      react:
+        specifier: ^19.2.1
+        version: 19.2.1
+      react-dom:
+        specifier: ^19.2.1
+        version: 19.2.1(react@19.2.1)
+    devDependencies:
+      '@tailwindcss/postcss':
+        specifier: ^4.1.17
+        version: 4.1.17
+      '@types/node':
+        specifier: ^20.19.25
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.2.7
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.7)
+      '@workspace/eslint-config':
+        specifier: workspace:^
+        version: link:../../packages/eslint-config
+      '@workspace/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      babel-plugin-react-compiler:
+        specifier: 1.0.0
+        version: 1.0.0
+      eslint:
+        specifier: ^9.39.1
+        version: 9.39.1(jiti@2.6.1)
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
   apps/backend:
     dependencies:
       '@hono/node-server':
