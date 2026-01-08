@@ -2,7 +2,11 @@ import { auth } from '@workspace/auth/server';
 import { config } from 'dotenv';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
+import { showRoutes } from 'hono/dev';
 import { logger } from 'hono/logger';
+import { poweredBy } from 'hono/powered-by';
+import authors from './routers/authors.js';
+import books from './routers/books.js';
 
 config({ path: '.env.local' });
 
@@ -13,6 +17,7 @@ const app = new Hono<{
   };
 }>();
 
+app.use(poweredBy());
 app.use(logger());
 
 app.use(
@@ -41,7 +46,6 @@ app.use('*', async (c, next) => {
 });
 
 app.on(['POST', 'GET'], '/api/auth/*', (c) => {
-  // console.log('Handling auth route:', c.req.raw);
   return auth.handler(c.req.raw);
 });
 
@@ -57,8 +61,12 @@ app.get('/session', (c) => {
   });
 });
 
-app.get('/', (c) => c.text('Backend is up'));
-app.get('/healthz', (c) => c.json({ status: 'ok' }));
-app.get('/api/hello', (c) => c.json({ message: 'Hello from Hono' }));
+app.route('/v1', authors);
+app.route('/v1', books);
 
-export { app };
+showRoutes(app, {
+  verbose: true,
+  colorize: true,
+});
+
+export default app;

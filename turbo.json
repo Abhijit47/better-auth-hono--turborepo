@@ -21,6 +21,14 @@
         "API_URL"
       ]
     },
+    "backend#build": {
+      "env": [
+        "BETTER_AUTH_URL",
+        "BETTER_AUTH_SECRET",
+        "DATABASE_URL",
+        "PORT"
+      ]
+    },
     "lint": {
       "dependsOn": [
         "^lint"
