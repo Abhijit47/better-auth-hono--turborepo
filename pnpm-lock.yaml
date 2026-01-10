@@ -44,6 +44,9 @@ importers:
       '@workspace/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@workspace/zod-schemas':
+        specifier: workspace:*
+        version: link:../../packages/zod-schemas
       lucide-react:
         specifier: ^0.475.0
         version: 0.475.0(react@19.2.1)
@@ -93,12 +96,18 @@ importers:
       '@hono/node-server':
         specifier: ^1.13.5
         version: 1.19.7(hono@4.11.3)
+      '@hono/zod-validator':
+        specifier: ^0.7.6
+        version: 0.7.6(hono@4.11.3)(zod@4.3.5)
       '@workspace/auth':
         specifier: workspace:*
         version: link:../../packages/auth
       '@workspace/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@workspace/zod-schemas':
+        specifier: workspace:*
+        version: link:../../packages/zod-schemas
       dotenv:
         specifier: 17.2.3
         version: 17.2.3
@@ -145,6 +154,9 @@ importers:
       '@workspace/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@workspace/zod-schemas':
+        specifier: workspace:*
+        version: link:../../packages/zod-schemas
       lucide-react:
         specifier: ^0.475.0
         version: 0.475.0(react@19.2.1)
@@ -457,6 +469,22 @@ importers:
       typescript:
         specifier: ^5.9.2
         version: 5.9.2
+
+  packages/zod-schemas:
+    dependencies:
+      zod:
+        specifier: ^4.3.5
+        version: 4.3.5
+    devDependencies:
+      '@types/node':
+        specifier: ^20.19.9
+        version: 20.19.25
+      '@workspace/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.3
 
 packages:
 
@@ -1066,6 +1094,12 @@ packages:
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: ^4
+
+  '@hono/zod-validator@0.7.6':
+    resolution: {integrity: sha512-Io1B6d011Gj1KknV4rXYz4le5+5EubcWEU/speUjuw9XMMIaP3n78yXLhjd2A3PXaXaUwEAluOiAyLqhBEJgsw==}
+    peerDependencies:
+      hono: '>=3.9.0'
+      zod: ^3.25.0 || ^4.0.0
 
   '@hookform/resolvers@5.2.2':
     resolution: {integrity: sha512-A/IxlMLShx3KjV/HeTcTfaMxdwy690+L/ZADoeaTltLx+CVuzkeVIPuybK3jrRfw7YZnmdKsVVHAlEPIAEUNlA==}
@@ -5097,6 +5131,11 @@ snapshots:
   '@hono/node-server@1.19.7(hono@4.11.3)':
     dependencies:
       hono: 4.11.3
+
+  '@hono/zod-validator@0.7.6(hono@4.11.3)(zod@4.3.5)':
+    dependencies:
+      hono: 4.11.3
+      zod: 4.3.5
 
   '@hookform/resolvers@5.2.2(react-hook-form@7.70.0(react@19.1.1))':
     dependencies:

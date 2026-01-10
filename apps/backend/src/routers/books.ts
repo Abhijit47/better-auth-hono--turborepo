@@ -1,6 +1,8 @@
-import { auth } from '@workspace/auth/server';
 import { Hono } from 'hono';
-// import {  } from "hono";
+
+import { zValidator } from '@hono/zod-validator';
+import { auth } from '@workspace/auth/server';
+import { bookSchema } from '@workspace/zod-schemas/book-schemas';
 
 const book = new Hono<{
   Variables: {
@@ -66,21 +68,48 @@ book.use('*', async (c, next) => {
 });
 
 book.get('/', async (c) => {
+  await sleep();
   const session = c.get('session');
   const user = c.get('user');
 
-  if (!user) return c.body(null, 401);
+  if (!session || !user)
+    return c.json(
+      {
+        status: 'error',
+        message: 'You must be logged in to access this resource.',
+      },
+      401
+    );
 
-  console.log('Creating a new book for user:', session);
-
-  await sleep();
   return c.json(books);
 });
 
-book.post('/', async (c) => {
-  await sleep();
-  const newBook = await c.req.json();
-  newBook.id = books.length + 1;
+book.post('/new', zValidator('json', bookSchema), (c) => {
+  // await sleep();
+  const session = c.get('session');
+  const user = c.get('user');
+
+  if (!session || !user)
+    return c.json(
+      {
+        status: 'error',
+        message: 'You must be logged in to access this resource.',
+      },
+      401
+    );
+
+  const validated = c.req.valid('json');
+  console.log('Validated data:', validated);
+
+  // const { title, description, author } = c.req.valid('form');
+  // console.log('req.body:', await c.req.json());
+
+  const newBook = {
+    id: books.length + 1,
+    title: 'Unknown Title',
+    description: 'Unknown Description',
+    author: 'Unknown Author',
+  };
   books.push(newBook);
   return c.json(newBook, 201);
 });
