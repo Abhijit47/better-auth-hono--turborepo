@@ -1,3 +1,4 @@
+import { serve } from '@hono/node-server';
 import { auth } from '@workspace/auth/server';
 import { config } from 'dotenv';
 import { Hono } from 'hono';
@@ -68,5 +69,10 @@ showRoutes(app, {
   verbose: true,
   colorize: true,
 });
+
+const port = Number(process.env.PORT) || 3000;
+
+console.log(`Backend listening on http://localhost:${port}`);
+serve({ fetch: app.fetch, port });
 
 export default app;
