@@ -23,6 +23,9 @@
       ]
     },
     "admin#build": {
+      "dependsOn": [
+        "^build"
+      ],
       "outputs": [
         ".next/**",
         "!.next/cache/**"
@@ -32,6 +35,9 @@
       ]
     },
     "web#build": {
+      "dependsOn": [
+        "^build"
+      ],
       "outputs": [
         ".next/**",
         "!.next/cache/**"
@@ -41,6 +47,9 @@
       ]
     },
     "backend#build": {
+      "dependsOn": [
+        "^build"
+      ],
       "outputs": [
         "dist/**"
       ],
