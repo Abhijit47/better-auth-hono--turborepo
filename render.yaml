@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: app-backend
+    runtime: node
+    rootDir: apps/backend
+    buildCommand: pnpm install
+    startCommand: pnpm start
+  - type: web
+    name: app-frontend
+    runtime: node
+    rootDir: apps/frontend
+    buildCommand: pnpm install
+    startCommand: pnpm start
