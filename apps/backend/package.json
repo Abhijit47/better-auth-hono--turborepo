@@ -13,6 +13,7 @@
   "dependencies": {
     "@hono/node-server": "^1.13.5",
     "@hono/zod-validator": "^0.7.6",
+    "@scalar/hono-api-reference": "^0.9.32",
     "@workspace/auth": "workspace:*",
     "@workspace/db": "workspace:*",
     "@workspace/zod-schemas": "workspace:*",

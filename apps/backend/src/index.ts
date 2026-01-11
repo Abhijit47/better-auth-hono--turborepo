@@ -1,4 +1,5 @@
 import { serve } from '@hono/node-server';
+import { Scalar } from '@scalar/hono-api-reference';
 import { auth } from '@workspace/auth/server';
 import { config } from 'dotenv';
 import { Hono } from 'hono';
@@ -49,6 +50,31 @@ app.use('*', async (c, next) => {
 app.on(['POST', 'GET'], '/api/auth/*', (c) => {
   return auth.handler(c.req.raw);
 });
+
+app.get('/', async (c) => {
+  // const openAPISchema = await auth.api.generateOpenAPISchema();
+  // console.log(openAPISchema);
+  return c.json({
+    status: 'ok',
+    message: 'Welcome to the Backend API',
+    // openAPISchema,
+  });
+});
+
+app.get(
+  '/docs',
+  Scalar({
+    pageTitle: 'Backend API Documentation',
+    sources: [
+      {
+        title: 'Auth',
+        url: '/api/auth/open-api/generate-schema',
+      },
+    ],
+    isEditable: false,
+    title: 'Backend API Reference',
+  })
+);
 
 app.get('/session', (c) => {
   const session = c.get('session');
