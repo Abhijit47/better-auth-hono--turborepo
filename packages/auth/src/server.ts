@@ -1,8 +1,13 @@
 import { authDB } from '@workspace/db/auth-db';
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-import { openAPI } from 'better-auth/plugins';
+import {
+  admin as adminPlugin,
+  lastLoginMethod,
+  openAPI,
+} from 'better-auth/plugins';
 import { config } from 'dotenv';
+import { ac, admin, myCustomRole, user } from './permissions';
 
 config({ path: '.env.local' });
 
@@ -13,9 +18,9 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  baseURL: 'http://localhost:3000', // process.env.BETTER_AUTH_URL,
+  baseURL: process.env.BETTER_AUTH_URL,
   basePath: '/api/auth', // ADD THIS LINE
-  secret: 'JMv8W1NsZV96zQiXFCziHv4CMhOU5qXN', // process.env.BETTER_AUTH_SECRET,
+  secret: process.env.BETTER_AUTH_SECRET,
   // socialProviders: {
   //   github: {
   //     clientId: process.env.GITHUB_CLIENT_ID as string,
@@ -29,7 +34,16 @@ export const auth = betterAuth({
     'http://localhost:3003',
     'http://localhost:3004',
   ],
-  plugins: [openAPI()],
+  plugins: [
+    adminPlugin({
+      ac,
+      roles: { admin, user, myCustomRole },
+    }),
+    lastLoginMethod({
+      storeInDatabase: true,
+    }),
+    openAPI({}),
+  ],
 });
 
 export type Auth = ReturnType<typeof betterAuth>;
