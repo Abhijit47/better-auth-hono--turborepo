@@ -22,12 +22,28 @@
         "PORT"
       ]
     },
+    "admin#build": {
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**"
+      ],
+      "env": [
+        "API_URL"
+      ]
+    },
     "web#build": {
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**"
+      ],
       "env": [
         "API_URL"
       ]
     },
     "backend#build": {
+      "outputs": [
+        "dist/**"
+      ],
       "env": [
         "BETTER_AUTH_URL",
         "BETTER_AUTH_SECRET",
